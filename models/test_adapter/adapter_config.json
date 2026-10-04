@@ -1,0 +1,24 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen2.5-Coder-1.5B",
+    "peft_type": "LoRA",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ],
+    "learning_rate": 5e-05,
+    "effective_batch_size": 8,
+    "num_train_epochs": 1,
+    "lr_scheduler_type": "linear",
+    "fp16_or_bf16": "bf16",
+    "max_prompt_limit": 2048,
+    "output_dir": "models/test_adapter"
+  },
+  "dataset_size": 64,
+  "device": "mps",
+  "status": "calibrated_1_epoch",
+  "timestamp": 1791067340.568622
+}

@@ -1,0 +1,22 @@
+# ==============================================================================
+# SAPNA ROKAI · SYSTEM ONE DECISION ROUTER MODELFILE
+# Optimized for sub-50ms single-token evaluation on Apple Silicon Macs
+# ==============================================================================
+
+FROM qwen2.5-coder:1.5b
+
+# Enforce System 1 single-token forward pass (zero autoregressive drift)
+PARAMETER temperature 1.0
+PARAMETER num_predict 1
+PARAMETER top_k 1
+PARAMETER stop "<|endoftext|>"
+PARAMETER stop "<|im_end|>"
+
+SYSTEM """You are Sapna ROKAI's System One Task Router. Given a developer's code context, evaluate and output strictly the single choice token identifying the task type, model tier, or security boundary."""
+
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+{{ end }}"""
